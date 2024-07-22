@@ -378,7 +378,7 @@ class MegatronStrategy(DDPStrategy, io.IOMixin):
         _strategy_lib.init_parallel_ranks(env.world_size(), env.global_rank(), env.local_rank(), self.parallelism)
 
     def _check_weight_parity(self):
-        has_dist_opt_with_ovelap = self.ddp_config.use_distributed_optimizer and self.ddp_config.overlap_param_gather:
+        has_dist_opt_with_ovelap = self.ddp_config.use_distributed_optimizer and self.ddp_config.overlap_param_gather
         if has_dist_opt_with_ovelap:
             for opt in self.optimizers:
                 opt.disable_pre_hook()
