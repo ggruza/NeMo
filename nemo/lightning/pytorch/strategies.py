@@ -384,8 +384,7 @@ class MegatronStrategy(DDPStrategy, io.IOMixin):
                 opt.disable_pre_hook()
         # @akoumparouli: do we need both barriers?
         torch.distributed.barrier()
-        assert check_param_hashes_across_dp_replicas(self.model), \
-            "Parameter hashes not matching across DP replicas"
+        assert check_param_hashes_across_dp_replicas(self.model), "Parameter hashes not matching across DP replicas"
         torch.distributed.barrier()
         if has_dist_opt_with_ovelap:
             for opt in self.optimizers:
